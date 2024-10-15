@@ -49,5 +49,15 @@ export class EncabezadoComponent {
   redirigirALogin() {
     this.router.navigateByUrl('/Login-Abogados'); 
   }
+
+  redirigirADatosCuentaAbogados() {
+    this.router.navigateByUrl('/Datos-Abogados'); 
+  }
+
+  redirigirACasosAbogados() {
+    this.router.navigateByUrl('/Casos-Abogados'); 
+  }
+
+  
 }
 

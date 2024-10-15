@@ -4,6 +4,8 @@ import { ListaAbogadosComponent } from './lista-abogados/lista-abogados.componen
 import { HttpClientModule } from '@angular/common/http';
 import { LoginAbogadosComponent } from './login-abogados/login-abogados.component';
 import { InicioPaginaPrincipalComponent } from './inicio-pagina-principal/inicio-pagina-principal.component';
+import { DatosCuentaAbogadosComponent } from './datos-cuenta-abogados/datos-cuenta-abogados.component';
+import { CasoAbogadosComponent } from './caso-abogados/caso-abogados.component';
 
 export const routes: Routes = [
     {
@@ -14,6 +16,8 @@ export const routes: Routes = [
         {path:"Lista-Abogados", component:ListaAbogadosComponent},
         {path:"Login-Abogados", component:LoginAbogadosComponent},
         {path:"InicioPaginaPrincipal", component:InicioPaginaPrincipalComponent},
+        {path:"Datos-Abogados", component:DatosCuentaAbogadosComponent},
+        {path:"Casos-Abogados", component:CasoAbogadosComponent},
 
 
 ];

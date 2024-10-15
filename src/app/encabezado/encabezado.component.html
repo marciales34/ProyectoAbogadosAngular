@@ -15,7 +15,7 @@
             <button type="" class="signin2" (click)="redirigirALogin()">Registro</button>
         </div>
         <div class="boton" *ngIf="loggedIn()">
-            <button type="button" class="loggedin">Mis Casos</button>
+            <button type="button" class="loggedin" (click)="redirigirADatosCuentaAbogados()">Mi Cuenta</button>
         </div>
 
         <div class="boton" *ngIf="loggedIn()">
@@ -27,7 +27,7 @@
     <div class="navbar">
         <button class="barra" type="" (click)="redirigirInicio()">Inicio</button>
         <button class="barra" type="">Nuevo Caso</button>
-        <button class="barra" type="">Mis Casos</button>
+        <button class="barra" type="" (click)="redirigirACasosAbogados()">Mis Casos</button>
         <button class="barra" type="">Contacto</button>
     </div>
 </div>

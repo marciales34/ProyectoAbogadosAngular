@@ -1,0 +1,128 @@
+/* Table Container Styles */
+.tabla-abogados-container {
+    background-color: rgb(14, 62, 88);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    position: relative;
+    z-index: 10;
+    margin-top: 5%;
+}
+
+/* Heading Styles */
+.tabla-abogados-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Abogado Info Styles */
+.abogado-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Info Item Styles */
+.info-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 18px;
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+}
+
+/* Hover Effect for Info Items */
+.info-item:hover {
+    background-color: #e3f2fd; /* Color más claro al pasar el mouse */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .tabla-abogados-container {
+        padding: 20px;
+    }
+
+    .info-item {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+/* Rama Container Styles */
+.rama-container {
+    background-color: rgb(14, 62, 88);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 10px auto;
+}
+
+.rama-container h1{
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Rama List Styles */
+.rama-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Rama Item Styles */
+.rama-item {
+    background-color: #ffffff;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s, background-color 0.3s ease; /* Transición suave */
+}
+
+/* Hover Effect for Rama Items */
+.rama-item:hover {
+    background-color: #bbdefb; /* Color claro al hacer hover */
+    transform: translateY(-3px); /* Elevación suave al hacer hover */
+}
+
+/* Rama ID Styles */
+.rama-id {
+    font-weight: bold;
+    font-size: 18px;
+    color: #007bff;
+    margin-right: 8px;
+}
+
+/* Rama Name Styles */
+.rama-nombre {
+    font-size: 16px;
+    color: #333;
+}
+
+/* General body styling */
+body {
+    font-family: 'Roboto', sans-serif; /* Fuente moderna */
+    background-color: #f0f4f8; /* Fondo suave */
+    color: #333;
+}
+
+/* General link styling */
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* Box shadow hover effect for better visual feedback */
+.rama-item:hover, .info-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra adicional en hover */
+}

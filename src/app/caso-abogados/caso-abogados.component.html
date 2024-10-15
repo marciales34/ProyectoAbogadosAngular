@@ -1,0 +1,47 @@
+<section class="seccion1">
+    <div><app-encabezado></app-encabezado></div>
+</section>
+
+<section class="tabla-abogados-container">
+    <h1>Casos del Abogado</h1>
+    <div *ngFor="let caso of casos" class="caso-container">
+        <h2>Caso ID: {{ caso.id }}</h2>
+        <div class="abogado-info">
+            <div class="info-item">
+                <strong>Abogado Encargado:</strong> {{ caso.id_abogado_encargado }}
+            </div>
+            <div class="info-item">
+                <strong>Identificador del Cliente:</strong> {{ caso.id_cliente }}
+            </div>
+            <div class="info-item">
+                <strong>Estado del Caso:</strong> {{ caso.estado_caso }}
+            </div>
+            <div class="info-item">
+                <strong>Descripción del Caso:</strong> {{ caso.descripcion_caso }}
+            </div>
+            <div class="info-item">
+                <strong>Evidencias:</strong> {{ caso.evidencia }}
+            </div>
+            <div class="info-item">
+                <strong>Testimonios:</strong> {{ caso.testimonios }}
+            </div>
+            <div class="info-item">
+                <strong>Se creó:</strong> {{ caso.creado_en }}
+            </div>
+            <div class="info-item">
+                <strong>Se actualizó:</strong> {{ caso.actualizado_en }}
+            </div>
+            <div class="info-item">
+                <strong>Rama:</strong> {{ caso.rama_id }}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<footer>
+    <app-footer></app-footer>
+</footer>
+

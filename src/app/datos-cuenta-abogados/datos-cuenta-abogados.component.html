@@ -1,0 +1,79 @@
+<section class="seccion1">
+    <div><app-encabezado></app-encabezado></div>
+</section>
+
+<section class="rama-container" *ngIf="abogado">
+    <h1>Rama del Derecho del Abogado</h1>
+    <ul class="rama-list">
+        <li class="rama-item" *ngIf="abogado.rama_id == 1">
+            <span class="rama-id">1</span>
+            <span class="rama-nombre">Derecho Civil</span>
+        </li>
+        <li class="rama-item" *ngIf="abogado.rama_id == 2">
+            <span class="rama-id">2</span>
+            <span class="rama-nombre">Derecho Penal</span>
+        </li>
+        <li class="rama-item" *ngIf="abogado.rama_id == 3">
+            <span class="rama-id">3</span>
+            <span class="rama-nombre">Derecho Administrativo</span>
+        </li>
+        <li class="rama-item" *ngIf="abogado.rama_id == 4">
+            <span class="rama-id">4</span>
+            <span class="rama-nombre">Derecho Laboral</span>
+        </li>
+        <li class="rama-item" *ngIf="abogado.rama_id == 5">
+            <span class="rama-id">5</span>
+            <span class="rama-nombre">Derecho Comercial</span>
+        </li>
+        <li class="rama-item" *ngIf="abogado.rama_id == 6">
+            <span class="rama-id">6</span>
+            <span class="rama-nombre">Derecho Internacional</span>
+        </li>
+        <li class="rama-item" *ngIf="abogado.rama_id == 7">
+            <span class="rama-id">7</span>
+            <span class="rama-nombre">Derecho Constitucional</span>
+        </li>
+        <li class="rama-item" *ngIf="abogado.rama_id == 8">
+            <span class="rama-id">8</span>
+            <span class="rama-nombre">Derecho Ambiental</span>
+        </li>
+    </ul>
+</section>
+
+<section class="tabla-abogados-container">
+    <h1>Datos del Abogado</h1>
+    <div class="abogado-info" *ngIf="abogado">
+        <div class="info-item">
+            <strong>ID:</strong> {{ abogado.id }}
+        </div>
+        <div class="info-item">
+            <strong>Nombre:</strong> {{ abogado.nombre }}
+        </div>
+        <div class="info-item">
+            <strong>Correo:</strong> {{ abogado.correo }}
+        </div>
+        <div class="info-item">
+            <strong>Rol:</strong> {{ abogado.rol }}
+        </div>
+        <div class="info-item">
+            <strong>Teléfono:</strong> {{ abogado.telefono }}
+        </div>
+        <div class="info-item">
+            <strong>Se creó:</strong> {{ abogado.created_at }}
+        </div>
+        <div class="info-item">
+            <strong>Se actualizó:</strong> {{ abogado.updated_at }}
+        </div>
+        <div class="info-item">
+            <strong>Rama:</strong> {{ abogado.rama_id }}
+        </div>
+    </div>
+</section>
+
+<footer>
+    <app-footer></app-footer>
+</footer>
+
+
+
+

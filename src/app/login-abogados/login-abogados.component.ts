@@ -73,8 +73,10 @@ onSubmitLogin(): void {
     const loginData = this.formularioLogin.value;
     this.http.post<any>('http://localhost:8080/login', loginData).subscribe(
       (response) => {
-        const nombreUsuario = response.nombre; // Aquí no habrá error, pero pierdes la verificación de tipos
+        const nombreUsuario = response.nombre;
+        const abogadoId = response.id;
         localStorage.setItem('username', nombreUsuario); 
+        localStorage.setItem('abogadoId', abogadoId.toString());
         this.alertaService.success('Login exitoso', true);
         this.router.navigate(['/Lista-Abogados']);
       },
