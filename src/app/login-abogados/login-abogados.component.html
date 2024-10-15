@@ -1,0 +1,91 @@
+<div class="logo">
+    <img class="img1" src="../../assets/img/logo11.png" alt="">
+</div>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form (ngSubmit)="onSubmitRegistro()" [formGroup]="formularioRegistro" id="registrationForm">
+            <h1>Crea Tu Cuenta</h1>
+            <div class="social-container">
+              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+              <a href="#" class="social"><i class="fab fa-twitter"></i></a>
+            </div>
+            <span>O usa tu correo para crear una nueva</span>
+            <input type="text" placeholder="Nombre" formControlName="nombre" required />
+            <div *ngIf="formularioRegistro?.get('nombre')?.invalid && formularioRegistro?.get('nombre')?.touched" class="error-message">
+              El nombre es obligatorio.
+            </div>
+            
+            <input type="email" placeholder="Correo" formControlName="correo" required />
+            <div *ngIf="formularioRegistro?.get('correo')?.invalid && formularioRegistro?.get('correo')?.touched" class="error-message">
+              El correo es obligatorio y debe ser un correo electrónico válido.
+            </div>
+            
+            <input type="password" placeholder="Contraseña" formControlName="password" required />
+            <div *ngIf="formularioRegistro?.get('password')?.invalid && formularioRegistro?.get('password')?.touched" class="error-message">
+              La contraseña es obligatoria.
+            </div>
+
+            <input type="text" placeholder="Teléfono" formControlName="telefono" required />
+            <div *ngIf="formularioRegistro?.get('telefono')?.invalid && formularioRegistro?.get('telefono')?.touched" class="error-message">
+              El teléfono es obligatorio.
+            </div>
+
+            <select name="rama_id" formControlName="rama_id" required>
+              <option value="" disabled selected>Selecciona tu especialización</option>
+              <option value="1">Derecho Civil</option>
+              <option value="2">Derecho Penal</option>
+              <option value="3">Derecho Administrativo</option>
+              <option value="4">Derecho Laboral</option>
+              <option value="5">Derecho Comercial</option>
+              <option value="6">Derecho Internacional</option>
+              <option value="7">Derecho Constitucional</option>
+              <option value="8">Derecho Ambiental</option>
+            </select>
+            <div *ngIf="formularioRegistro?.get('rama_id')?.invalid && formularioRegistro?.get('rama_id')?.touched" class="error-message">
+              Selecciona una especialización.
+            </div>
+
+            <button type="submit">Registrarse</button>
+          </form>
+          
+    </div>
+    <div class="form-container sign-in-container">
+        <form (ngSubmit)="onSubmitLogin()" [formGroup]="formularioLogin" id="form2">
+            <h1>Inicia Sesión</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>O Usa Tu Cuenta</span>
+            <input type="email" placeholder="Email" formControlName="correo" required />
+            <div *ngIf="formularioLogin?.get('email')?.invalid && formularioLogin?.get('email')?.touched" class="error-message">
+              El correo es obligatorio y debe ser un correo electrónico válido.
+            </div>
+            
+            <input type="password" placeholder="Password" formControlName="password" required/>
+            <div *ngIf="formularioLogin?.get('password')?.invalid && formularioLogin?.get('password')?.touched" class="error-message">
+              La contraseña es obligatoria.
+            </div>
+            
+            <a href="#">¿Olvidaste tu contraseña?</a>
+            <button>Iniciar Sesión</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Bienvenido de Vuelta!</h1>
+                <p>Para mantenerse conectado con nosotros, inicie sesión con su información personal</p>
+                <button class="ghost" id="signIn">Acceder</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hola, Amigo!</h1>
+                <p>
+                    Introduce tus datos personales y comienza tu viaje con nosotros.</p>
+                <button class="ghost" id="signUp">REGISTRATE</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,19 +8,24 @@
     </div>
 
     <div class="nav-botones">
-        <div class="boton">
-            <button type="" class="signin">Acceso</button>
+        <div class="boton" *ngIf="!loggedIn()">
+            <button type="" class="signin" (click)="redirigirALogin()">Acceso</button>
         </div>
-        <div class="boton">
-            <button type="" class="signin2">Registro</button>
+        <div class="boton" *ngIf="!loggedIn()">
+            <button type="" class="signin2" (click)="redirigirALogin()">Registro</button>
+        </div>
+        <div class="boton" *ngIf="loggedIn()">
+            <button type="button" class="loggedin">Mis Casos</button>
         </div>
 
-
+        <div class="boton" *ngIf="loggedIn()">
+            <button type="button" class="loggedin" (click)="logout()">¡Welcome! {{ getUsername() }}</button>
+        </div>
 
     </div>
 
     <div class="navbar">
-        <button class="barra" type="">Inicio</button>
+        <button class="barra" type="" (click)="redirigirInicio()">Inicio</button>
         <button class="barra" type="">Nuevo Caso</button>
         <button class="barra" type="">Mis Casos</button>
         <button class="barra" type="">Contacto</button>
