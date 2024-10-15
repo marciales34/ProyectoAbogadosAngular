@@ -3,32 +3,44 @@ import { EncabezadoComponent } from "../encabezado/encabezado.component";
 import { FooterComponent } from "../footer/footer.component";
 import { NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
 import { AlertaService } from '../servicios/alerta.service';
-import { Caso } from '../caso'; // Asegúrate de importar tu interfaz
+import { Caso } from '../caso'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-caso-abogados',
   standalone: true,
-  imports: [EncabezadoComponent, FooterComponent, NgFor],
+  imports: [EncabezadoComponent, FooterComponent, NgFor, NgIf],
   templateUrl: './caso-abogados.component.html',
   styleUrls: ['./caso-abogados.component.css']
 })
 export class CasoAbogadosComponent {
-  casos: Caso[] = []; // Cambia el tipo según tu modelo
+  casos: Caso[] = []; 
+  isLoggedIn: boolean = false; 
+  noCasosAvailable: boolean = false; // Nueva propiedad para controlar si hay casos disponibles
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private alertaService: AlertaService) {}
+  constructor(private http: HttpClient, private router: Router, private alertaService: AlertaService) {}
 
   ngOnInit(): void {
-    const casoId = localStorage.getItem('abogadoId'); // Suponiendo que guardas el ID del abogado en el localStorage
-    if (casoId) {
-      this.http.get<Caso[]>(`http://localhost:8080/Casos/${casoId}`).subscribe(
-        (response: Caso[]) => { // Asegúrate de usar el tipo correcto aquí
-          this.casos = response; // Asigna la respuesta a la variable casos
+    const abogadoId = localStorage.getItem('abogadoId'); 
+    console.log('Abogado ID desde localStorage:', abogadoId);
+  
+    this.isLoggedIn = !!abogadoId && this.verificarEstadoLogin();
+    console.log('¿Usuario está logueado?', this.isLoggedIn);
+  
+    if (this.isLoggedIn) {
+      this.http.get<Caso[]>(`http://localhost:8080/Casos/${abogadoId}`).subscribe(
+        (response: Caso[]) => {
+          this.casos = response; 
+          console.log('Casos obtenidos:', this.casos); 
+
+          // Verifica si no hay casos disponibles
+          this.noCasosAvailable = this.casos.length === 0; 
         },
         (error) => {
           if (error.status === 404) {
             this.alertaService.error('No se encontraron casos para este abogado.');
+            this.noCasosAvailable = true; // Si no se encontraron casos, se establece a true
           } else {
             console.error('Error al obtener los datos de los casos', error);
             this.alertaService.error('Error al obtener los datos, intenta de nuevo más tarde.');
@@ -39,6 +51,20 @@ export class CasoAbogadosComponent {
       this.alertaService.error('No se ha encontrado un ID de abogado. Por favor, inicia sesión nuevamente.');
     }
   }
+
+  private verificarEstadoLogin(): boolean {
+    const token = localStorage.getItem('accessToken'); 
+    return !!token; 
+  }
+
+  logout(): void {
+    localStorage.removeItem('abogadoId');
+    localStorage.removeItem('accessToken'); 
+    this.router.navigate(['Login-Abogados']); 
+    this.alertaService.success('Has cerrado sesión correctamente.', true); 
+  }
 }
+
+
 
   

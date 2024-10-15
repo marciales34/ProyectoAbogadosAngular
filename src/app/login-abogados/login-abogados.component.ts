@@ -45,9 +45,16 @@ export class LoginAbogadosComponent {
   onSubmitRegistro(): void {
     if (this.formularioRegistro.valid) {
         const formData = this.formularioRegistro.value;
+
         this.http.post('http://localhost:8080/Enviar', formData).subscribe(
             (response: any) => {
-              localStorage.setItem('username', formData.nombre); 
+                const abogadoId = response.id; // Asegúrate de que `response` tiene el campo `id`
+                const accessToken = response.token; // Si no tienes el token, quita esta línea
+
+                localStorage.setItem('username', formData.nombre); 
+                localStorage.setItem('abogadoId', abogadoId);
+                localStorage.setItem('accessToken', accessToken); // Guardar el token (si lo tienes)
+
                 this.alertaService.success(response.message, true);
                 this.router.navigate(['/Lista-Abogados']);
             },
@@ -68,15 +75,19 @@ export class LoginAbogadosComponent {
 }
 
 
+
 onSubmitLogin(): void {
   if (this.formularioLogin.valid) {
     const loginData = this.formularioLogin.value;
     this.http.post<any>('http://localhost:8080/login', loginData).subscribe(
       (response) => {
         const nombreUsuario = response.nombre;
-        const abogadoId = response.id;
-        localStorage.setItem('username', nombreUsuario); 
+        const abogadoId = response.id; // Asegúrate de que `response` tiene el campo `id`
+        const accessToken = response.token; // Asegúrate de que `response` tiene el token
+
+        localStorage.setItem('username', nombreUsuario);
         localStorage.setItem('abogadoId', abogadoId.toString());
+        localStorage.setItem('accessToken', accessToken); // Guardar el token
         this.alertaService.success('Login exitoso', true);
         this.router.navigate(['/Lista-Abogados']);
       },
@@ -93,6 +104,8 @@ onSubmitLogin(): void {
     console.log('Formulario de inicio de sesión inválido');
   }
 }
+
+
 
 
 

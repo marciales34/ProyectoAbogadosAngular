@@ -1,5 +1,5 @@
 <div>
-    <img class="logo2" src="../../assets/img/logo11.png" alt="logo" />
+    <img (click)="redirigirInicio()" class="logo2" src="../../assets/img/logo11.png" alt="logo" />
 
     <div class="eclipses">
         <div class="circulo1"></div>
@@ -26,8 +26,8 @@
 
     <div class="navbar">
         <button class="barra" type="" (click)="redirigirInicio()">Inicio</button>
-        <button class="barra" type="">Nuevo Caso</button>
+        <button class="barra" type="" (click)="redirigirARegistroCasosAbogados() ">Nuevo Caso</button>
         <button class="barra" type="" (click)="redirigirACasosAbogados()">Mis Casos</button>
-        <button class="barra" type="">Contacto</button>
+        <button class="barra" type="" (click)="redirigirAContacto()">Contacto</button>
     </div>
 </div>

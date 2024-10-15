@@ -1,0 +1,79 @@
+<section class="seccion1">
+    <div><app-encabezado></app-encabezado></div>
+</section>
+
+<div class="tabla-abogados-container">
+    <h1>Registrar Nuevo Caso</h1>
+
+    <form [formGroup]="formularioCaso" (ngSubmit)="onSubmitCaso()">
+        <!-- ID del abogado -->
+        <div class="form-group">
+            <label for="id_abogado">ID del Abogado</label>
+            <input type="text" id="id_abogado" formControlName="id_abogado" class="info-item" readonly>
+        </div>
+
+        <!-- ID del Cliente (solo lectura) -->
+        <div class="form-group">
+            <label for="id_cliente">ID del Cliente</label>
+            <input type="text" id="id_cliente" formControlName="id_cliente" class="info-item" readonly>
+        </div>
+
+        <!-- Correo del cliente -->
+        <div class="form-group">
+            <label for="correo_cliente">Correo del Cliente</label>
+            <input type="email" id="correo_cliente" formControlName="correo_cliente" class="info-item" placeholder="Ingrese el correo del cliente" required>
+            <button type="button" class="info-item" (click)="buscarCliente()">Buscar Cliente</button>
+        </div>
+
+        <!-- Estado del Caso -->
+        <div class="form-group">
+            <label for="estado_caso">Estado del Caso</label>
+            <select id="estado_caso" formControlName="estado_caso" class="info-item" required>
+                <option value="abierto">Abierto</option>
+                <option value="finalizado">Finalizado</option>
+            </select>
+        </div>
+
+        <!-- Descripción del Caso -->
+        <div class="form-group">
+            <label for="descripcion_caso">Descripción del Caso</label>
+            <textarea id="descripcion_caso" formControlName="descripcion_caso" class="info-item" rows="4" placeholder="Describe el caso aquí..." required></textarea>
+        </div>
+
+        <!-- Evidencia -->
+        <div class="form-group">
+            <label for="evidencia">Evidencia</label>
+            <textarea id="evidencia" formControlName="evidencia" class="info-item" rows="3" placeholder="Añade las evidencias aquí..."></textarea>
+        </div>
+
+        <!-- Testimonios -->
+        <div class="form-group">
+            <label for="testimonios">Testimonios</label>
+            <textarea id="testimonios" formControlName="testimonios" class="info-item" rows="3" placeholder="Añade los testimonios aquí..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="rama">Rama del Derecho</label>
+            <select id="rama_id" formControlName="rama_id" class="info-item" required>
+                <option value="" disabled selected>Selecciona tu especialización</option>
+                <option value="1">Derecho Civil</option>
+                <option value="2">Derecho Penal</option>
+                <option value="3">Derecho Administrativo</option>
+                <option value="4">Derecho Laboral</option>
+                <option value="5">Derecho Comercial</option>
+                <option value="6">Derecho Internacional</option>
+                <option value="7">Derecho Constitucional</option>
+                <option value="8">Derecho Ambiental</option>
+                <!-- Agrega más opciones según sea necesario -->
+            </select>
+        </div>
+    
+        <!-- Botón de registro -->
+        <button type="submit" class="info-item" id="registrarCasoBtn">Registrar Caso</button>
+
+    </form>
+</div>
+
+<footer>
+    <app-footer></app-footer>
+</footer>

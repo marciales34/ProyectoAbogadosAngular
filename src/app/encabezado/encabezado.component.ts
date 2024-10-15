@@ -29,18 +29,21 @@ export class EncabezadoComponent {
   }
 
   // Método para manejar el cierre de sesión
-  logout() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.alerta.confirmLogout('Confirmación', '¿Estás seguro de que deseas cerrar sesión?')
-        .then((result) => {
-          if (result.isConfirmed) {
-            localStorage.removeItem('username'); // Elimina el nombre de usuario del localStorage
-            this.alerta.success('¡Tu sesión ha finalizado exitosamente!', true); // Muestra un mensaje de éxito
-            this.router.navigate(['/InicioPaginaPrincipal']); // Redirige a la página principal
-          }
-        });
-    }
+logout() {
+  if (isPlatformBrowser(this.platformId)) {
+    this.alerta.confirmLogout('Confirmación', '¿Estás seguro de que deseas cerrar sesión?')
+      .then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem('username'); // Elimina el nombre de usuario del localStorage
+          localStorage.removeItem('abogadoId'); // Elimina el ID del abogado del localStorage
+          localStorage.removeItem('accessToken'); // Elimina el token de acceso del localStorage, si es que estás utilizando uno
+          this.alerta.success('¡Tu sesión ha finalizado exitosamente!', true); // Muestra un mensaje de éxito
+          this.router.navigate(['/InicioPaginaPrincipal']); // Redirige a la página principal
+        }
+      });
   }
+}
+
 
   redirigirInicio() {
     this.router.navigate(['/InicioPaginaPrincipal']); 
@@ -56,6 +59,14 @@ export class EncabezadoComponent {
 
   redirigirACasosAbogados() {
     this.router.navigateByUrl('/Casos-Abogados'); 
+  }
+
+  redirigirARegistroCasosAbogados() {
+    this.router.navigateByUrl('/Registro-Casos-Abogados'); 
+  }
+
+  redirigirAContacto() {
+    this.router.navigateByUrl('/Contacto'); 
   }
 
   

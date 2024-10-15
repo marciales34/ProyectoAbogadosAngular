@@ -6,6 +6,8 @@ import { LoginAbogadosComponent } from './login-abogados/login-abogados.componen
 import { InicioPaginaPrincipalComponent } from './inicio-pagina-principal/inicio-pagina-principal.component';
 import { DatosCuentaAbogadosComponent } from './datos-cuenta-abogados/datos-cuenta-abogados.component';
 import { CasoAbogadosComponent } from './caso-abogados/caso-abogados.component';
+import { RegistroCasosAbogadoComponent } from './registro-casos-abogado/registro-casos-abogado.component';
+import { ContactoAbogadosComponent } from './contacto-abogados/contacto-abogados.component';
 
 export const routes: Routes = [
     {
@@ -18,6 +20,8 @@ export const routes: Routes = [
         {path:"InicioPaginaPrincipal", component:InicioPaginaPrincipalComponent},
         {path:"Datos-Abogados", component:DatosCuentaAbogadosComponent},
         {path:"Casos-Abogados", component:CasoAbogadosComponent},
+        {path:"Registro-Casos-Abogados", component:RegistroCasosAbogadoComponent},
+        {path:"Contacto", component:ContactoAbogadosComponent},
 
 
 ];
