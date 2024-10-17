@@ -1,0 +1,104 @@
+/* Table Container Styles */
+.tabla-abogados-container {
+    background-color: #c0c0c0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1150px;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative; /* Asegura que el z-index funcione */
+    z-index: 10; 
+}
+
+/* Heading Styles */
+.tabla-abogados-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Table Styles */
+.tablaAbogados {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+/* Table Header Styles */
+.tablaAbogados th {
+    background-color:  rgb(14,62,88);
+    color: white;
+    padding: 12px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    font-size: 20px;
+}
+
+/* Table Data Styles */
+.tablaAbogados td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+/* Button Styles for Edit and Delete */
+.boton-accion {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    padding: 10px;
+    margin: 5px;
+    justify-content: center;
+    text-align: center;
+}
+
+.boton-editar {
+    background-color:rgb(14,62,88);
+    color: white;
+    margin-right: 8px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.boton-editar:hover {
+    background-color: #000000;
+}
+
+.boton-eliminar {
+    background-color: #e74c3c;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.boton-eliminar:hover {
+    background-color: #c0392b;
+}
+
+/* Zebra Striping for Table Rows */
+.tablaAbogados tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover Effect for Table Rows */
+.tablaAbogados tbody tr:hover {
+    background-color: #b8b7b7;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .tabla-abogados-container {
+        padding: 15px;
+    }
+
+    .tablaAbogados th, .tablaAbogados td {
+        padding: 10px;
+        font-size: 12px;
+    }
+}

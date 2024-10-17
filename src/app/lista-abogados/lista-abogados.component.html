@@ -1,0 +1,43 @@
+<section class="seccion1">
+    <div><app-encabezado></app-encabezado></div>
+
+</section>
+
+<section class="tabla-abogados-container">
+    <h1>Lista de Abogados Base de Datos</h1>
+    <table class="tablaAbogados" id="tabla-abogados">
+        <thead>
+          <tr> <!-- Aquí agregamos el <tr> correctamente -->
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Se creó</th>
+            <th scope="col">Se actualizó</th>
+            <th scope="col">Rama</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <tr *ngFor="let modelo of datos">
+            <td>{{modelo.id}}</td>
+            <td>{{modelo.nombre}}</td>
+            <td>{{modelo.correo}}</td>
+            <td>{{modelo.password}}</td>
+            <td>{{modelo.rol}}</td>
+            <td>{{modelo.telefono}}</td>
+            <td>{{modelo.created_at}}</td>
+            <td>{{modelo.updated_at}}</td>
+            <td>{{modelo.rama_id}}</td>
+            <td>
+                <button class="boton-accion boton-editar">Editar</button>
+                <button class="boton-accion boton-eliminar">Eliminar</button>
+               
+            </td>
+          </tr>
+        </tbody>
+    </table>
+</section>

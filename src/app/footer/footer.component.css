@@ -1,0 +1,92 @@
+.seccionfinal {
+    display: flex; /* Cambia a flexbox para un diseño horizontal */
+    flex-direction: column; /* Mantiene el diseño en columnas */
+    background-color: #adadad;
+    width: 100%;
+    padding: 10px; /* Mantiene el padding */
+    color: #000000;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 5%;
+}
+
+.container {
+    display: flex; /* Flexbox en el contenedor para alinear los elementos hijos */
+    justify-content: space-between; /* Espacia los elementos a los extremos */
+}
+
+.row {
+    display: flex; /* Flexbox para los elementos hijos */
+    flex-wrap: nowrap; /* Evita que los elementos se apilen */
+    align-items: center; /* Alinea verticalmente los elementos al centro */
+    width: 100%; /* Asegúrate de que tome el ancho completo */
+}
+
+.seccionfinal h2 {
+    font-size: 24px;
+    margin-bottom: 10px; /* Reduce el margen inferior */
+}
+
+.seccionfinal p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.seccionfinal ul {
+    list-style: none;
+    padding: 0;
+}
+
+.seccionfinal ul li {
+    margin-bottom: 10px;
+}
+
+.seccionfinal ul li a {
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.seccionfinal ul li a:hover {
+    color:  rgb(14,62,88);
+}
+
+.social-buttons {
+    display: flex; /* Coloca los íconos de redes sociales en fila */
+    gap: 10px; /* Espacio entre íconos */
+}
+
+.social-buttons li {
+    margin: 0; /* Elimina el margen */
+    text-align: center;
+}
+
+.social-buttons li a {
+    color: #000000;
+    font-size: 20px;
+    transition: color 0.3s ease;
+    
+}
+
+.social-buttons li a:hover {
+    color: #e07b00;
+}
+
+.img-fluid {
+    width: 320px; /* Tamaño ajustado a 220px */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-left: 10%;
+}
+
+.col-md-2 {
+    width: 20%; /* Ajusta el ancho a 20% para mejor distribución */
+    text-align: left; /* Alinea el texto a la izquierda */
+    margin-left: 15%;
+}
+
+.col-md-4 {
+    width: 20%; /* Ajusta el ancho a 20% para mejor distribución */
+    text-align: left; /* Alinea el texto a la izquierda */
+    margin-left: 7%;
+}
+
+
