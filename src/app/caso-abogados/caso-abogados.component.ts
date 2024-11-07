@@ -48,7 +48,7 @@ export class CasoAbogadosComponent {
         }
       );
     } else {
-      this.alertaService.error('No se ha encontrado un ID de abogado. Por favor, inicia sesión nuevamente.');
+      this.alertaService.warning('No se ha encontrado un ID de abogado. Por favor, inicia sesión nuevamente.');
     }
   }
 

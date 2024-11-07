@@ -89,7 +89,7 @@ onSubmitLogin(): void {
         localStorage.setItem('abogadoId', abogadoId.toString());
         localStorage.setItem('accessToken', accessToken); // Guardar el token
         this.alertaService.success('Login exitoso', true);
-        this.router.navigate(['/Lista-Abogados']);
+        this.router.navigate(['/InicioPaginaPrincipal']);
       },
       (error) => {
         if (error.status === 401) {

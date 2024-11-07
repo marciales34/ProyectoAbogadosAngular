@@ -166,6 +166,7 @@ export class RegistroCasosAbogadoComponent implements OnInit {
           (cliente: any) => {
             if (cliente && cliente.id) {
               // Asegúrate de que el cliente tiene un id
+              this.alertaService.success('Cliente encontrado con exito',true);
               console.log('Cliente encontrado:', cliente);
               // Actualizar el formulario con el ID del cliente
               this.formularioCaso.patchValue({ id_cliente: cliente.id });
