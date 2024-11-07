@@ -30,4 +30,4 @@ Este proyecto es una aplicación web de gestión de abogados y clientes, desarro
 
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/tuusuario/tu-repositorio.git
+   git clone https://github.com/marciales34/ProyectoAbogadosAngular.git
