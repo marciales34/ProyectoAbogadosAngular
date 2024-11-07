@@ -1,84 +1,74 @@
 
 
     <app-admin-menu></app-admin-menu>
-
-<main>
-    <div class="tabla-abogados-container">
-        <h2>Crear Usuario</h2>
-        <form (ngSubmit)="crearUsuario()">
-          
-          <!-- Campo ID (opcional si se genera automáticamente en el backend) -->
-          <!-- <div class="form-group">
-            <label for="id">ID:</label>
-            <input type="text" id="id" [(ngModel)]="usuario.id" name="id" class="info-item">
-          </div> -->
-      
-          <!-- Nombre -->
+    <main class="tabla-abogados-container">
+      <h1>Crear Usuario</h1>
+      <form (ngSubmit)="crearUsuario()">
           <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" [(ngModel)]="usuario.nombre" name="nombre" required class="info-item">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" [(ngModel)]="usuario.nombre" name="nombre" class="info-item" required placeholder="Nombre">
           </div>
-      
-          <!-- Correo -->
+  
           <div class="form-group">
-            <label for="correo">Correo:</label>
-            <input type="email" id="correo" [(ngModel)]="usuario.correo" name="correo" required class="info-item">
+              <label for="correo">Correo</label>
+              <input type="email" id="correo" [(ngModel)]="usuario.correo" name="correo" class="info-item" required placeholder="Correo">
           </div>
-      
-          <!-- Contraseña -->
+  
           <div class="form-group">
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" [(ngModel)]="usuario.contrasena" name="contrasena" required class="info-item">
-          </div>
-      
-          <!-- Teléfono -->
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" [(ngModel)]="usuario.contrasena" name="contrasena" class="info-item" required placeholder="Contraseña" *ngIf="usuario.rol === 'cliente'">
+            <input type="password" id="password" [(ngModel)]="usuario.password" name="password" class="info-item" required placeholder="Contraseña" *ngIf="usuario.rol === 'abogado' || usuario.rol === 'admin'">
+        </div>
+  
           <div class="form-group">
-            <label for="telefono">Teléfono:</label>
-            <input type="text" id="telefono" [(ngModel)]="usuario.telefono" name="telefono" required class="info-item">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" [(ngModel)]="usuario.telefono" name="telefono" class="info-item" required placeholder="Teléfono">
           </div>
-      
-          <!-- Selección de Rol -->
+  
           <div class="form-group">
-            <label for="rol">Rol:</label>
-            <select id="rol" [(ngModel)]="usuario.rol" name="rol" (change)="onRolChange($event)" required class="info-item">
-              <option value="">Seleccione un rol</option>
-              <option value="admin">Administrador</option>
-              <option value="abogado">Abogado</option>
-              <option value="cliente">Cliente</option>
-            </select>
+              <label for="rol">Rol</label>
+              <select id="rol" [(ngModel)]="usuario.rol" (change)="onRolChange($event)" name="rol" class="info-item" required>
+                  <option value="" disabled selected>Seleccione un rol</option>
+                  <option value="cliente">Usuario</option>
+                  <option value="admin">Admin</option>
+                  <option value="abogado">Abogado</option>
+              </select>
           </div>
-      
-          <!-- Campos adicionales para Abogado -->
-          <div *ngIf="usuario.rol === 'abogado' || usuario.rol === 'admin'" class="form-group">
-            <label for="rama_id">Rama del Derecho:</label>
-            <select id="rama_id" [(ngModel)]="usuario.rama_id" name="rama_id" required class="info-item">
-                <option *ngFor="let rama of ramasDerecho" [value]="rama.id">{{ rama.nombreRama }}</option>
-            </select>
+  
+          <div *ngIf="usuario.rol === 'cliente'">
+              <div class="form-group">
+                  <label for="edad">Edad</label>
+                  <input type="number" id="edad" [(ngModel)]="usuario.edad" name="edad" class="info-item" required placeholder="Edad">
+              </div>
+  
+              <div class="form-group">
+                  <label for="direccion">Dirección</label>
+                  <input type="text" id="direccion" [(ngModel)]="usuario.direccion" name="direccion" class="info-item" required placeholder="Dirección">
+              </div>
           </div>
-      
-          <!-- Campos adicionales para Cliente -->
-          <div *ngIf="usuario.rol === 'cliente'" class="form-group">
-            <div>
-              <label for="edad">Edad:</label>
-              <input type="number" id="edad" [(ngModel)]="usuario.edad" name="edad" required class="info-item">
-            </div>
-            <div>
-              <label for="direccion">Dirección:</label>
-              <input type="text" id="direccion" [(ngModel)]="usuario.direccion" name="direccion" required class="info-item">
-            </div>
+  
+          <div *ngIf="usuario.rol === 'abogado' || usuario.rol === 'admin'">
+              <div class="form-group">
+                  <label for="rama">Rama de Derecho</label>
+                  <select id="rama" [(ngModel)]="usuario.rama_id" name="rama" class="info-item" required>
+                      <option value="" disabled selected>Seleccione una rama</option>
+                      <option value="1">Derecho Civil</option>
+                      <option value="2">Derecho Penal</option>
+                      <option value="3">Derecho Administrativo</option>
+                      <option value="4">Derecho Laboral</option>
+                      <option value="5">Derecho Comercial</option>
+                      <option value="6">Derecho Internacional</option>
+                      <option value="7">Derecho Constitucional</option>
+                      <option value="8">Derecho Ambiental</option>
+                  </select>
+              </div>
           </div>
-      
-          <!-- Botón para enviar -->
+  
           <button type="submit" class="info-item">Crear Usuario</button>
-          <!-- Botón para volver a Admin Principal -->
-<button (click)="volverAdminPrincipal()" class="info-item">Volver Principal</button>
-
-      
-        </form>
-      </div>
-</main>
-
-
+          <button type="button" class="info-item" (click)="volverAdminPrincipal()">Volver</button>
+      </form>
+    </main>
+  
 
       
 

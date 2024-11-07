@@ -9,21 +9,22 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-admin-crear-usuario',
   standalone: true,
-  imports: [CommonModule, AdminMenuComponent, FooterComponent,FormsModule],
+  imports: [CommonModule, AdminMenuComponent, FooterComponent, FormsModule],
   templateUrl: './admin-crear-usuario.component.html',
   styleUrls: ['./admin-crear-usuario.component.css']
 })
 export class AdminCrearUsuarioComponent implements OnInit {
-
+  
   // Modelo para el usuario
   usuario: any = {
     id: null,
     nombre: '',
     correo: '',
-    contrasena: '',
+    contrasena: '', // Usado para clientes
+    password: '',   // Usado para abogados
     telefono: '',
     rol: '',
-    rama_id: null,  // Solo para abogados
+    rama_id: null,  // Solo para abogados o admin
     edad: null,     // Solo para clientes
     direccion: ''   // Solo para clientes
   };
@@ -38,7 +39,6 @@ export class AdminCrearUsuarioComponent implements OnInit {
     this.getRamasDerecho();
   }
 
-  // Método para obtener las ramas del derecho
   getRamasDerecho() {
     this.http.get<any[]>('http://localhost:8080/ramasDerecho').subscribe(
       (response) => {
@@ -49,39 +49,51 @@ export class AdminCrearUsuarioComponent implements OnInit {
       }
     );
   }
+  
   volverAdminPrincipal() {
     this.router.navigate(['/admin-principal']);
   }
 
-  // Método para manejar el cambio de rol
   onRolChange(event: any) {
     const rolSeleccionado = event.target.value;
+    this.usuario.rol = rolSeleccionado; // Asigna el rol seleccionado
     if (rolSeleccionado === 'cliente') {
-      // Limpiar los campos específicos de abogado si se selecciona cliente
-      this.usuario.rama_id = null;
+      this.usuario.rama_id = null; // Limpiar rama_id si es cliente
+      this.usuario.password = '';   // Limpiar password si es cliente
     } else if (rolSeleccionado === 'abogado') {
-      // Limpiar los campos específicos de cliente si se selecciona abogado
       this.usuario.edad = null;
-      this.usuario.direccion = '';
+      this.usuario.direccion = null;
+    } else if (rolSeleccionado === 'admin') {
+      this.usuario.edad = null;
+      this.usuario.direccion = null;
     }
   }
 
-  // Método para enviar el formulario
   crearUsuario() {
-    // Definir la URL del endpoint (ajustar según tu backend)
-    const url = this.usuario.rol === 'cliente' ? 'http://localhost:8080/crearCliente' : 'http://localhost:8080/crearAbogado';
+    const usuarioEnvio: any = {
+      ...this.usuario,
+      // Asigna la contraseña correcta según el rol
+      password: this.usuario.rol === 'cliente' ? this.usuario.contrasena : this.usuario.password,
+      contrasena: this.usuario.rol === 'cliente' ? this.usuario.contrasena : undefined
+    };
+
+    const url = this.usuario.rol === 'cliente' ? 'http://localhost:8080/crearCliente' : 'http://localhost:8080/Enviar';
+
+    console.log('Datos a enviar:', usuarioEnvio); 
     
-    // Enviar el usuario al backend
-    this.http.post(url, this.usuario).subscribe(
+    this.http.post(url, usuarioEnvio).subscribe(
       (response) => {
         console.log('Usuario creado con éxito', response);
-        // Redirigir después de crear el usuario, por ejemplo, a la lista de usuarios
-        this.router.navigate(['/admin-lista-c']);
+        if (this.usuario.rol === 'abogado' || this.usuario.rol === 'admin') {
+          this.router.navigate(['/admin-lista-a']);
+        } else {
+          this.router.navigate(['/admin-lista-c']);
+        }
       },
       (error) => {
         console.error('Error al crear el usuario', error);
+        alert('Error: ' + (error.error.message || 'Error al crear el usuario')); // Mostrar mensaje de error
       }
     );
   }
-
 }

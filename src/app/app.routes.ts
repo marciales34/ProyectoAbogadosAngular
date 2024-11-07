@@ -8,6 +8,7 @@ import { DatosCuentaAbogadosComponent } from './datos-cuenta-abogados/datos-cuen
 import { CasoAbogadosComponent } from './caso-abogados/caso-abogados.component';
 import { RegistroCasosAbogadoComponent } from './registro-casos-abogado/registro-casos-abogado.component';
 import { ContactoAbogadosComponent } from './contacto-abogados/contacto-abogados.component';
+import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
 
 import { AdminPrincipalComponent } from './admin-principal/admin-principal.component';
 import { AdminListaUsuariosComponent } from './admin-lista-usuarios/admin-lista-usuarios.component';
@@ -20,10 +21,11 @@ import { AdminListaClientesComponent} from './admin-lista-c/admin-lista-c.compon
 export const routes: Routes = [
     {
         path: "",
-        redirectTo: "/InicioPaginaPrincipal",
+        redirectTo: "/Lista-Clientes",
         pathMatch: "full"
     },
     { path: "Lista-Abogados", component: ListaAbogadosComponent },
+    {path: "Lista-Clientes",component:ListaClientesComponent},
     { path: "Login-Abogados", component: LoginAbogadosComponent },
     { path: "InicioPaginaPrincipal", component: InicioPaginaPrincipalComponent },
     { path: "Datos-Abogados", component: DatosCuentaAbogadosComponent },
@@ -36,6 +38,8 @@ export const routes: Routes = [
     { path: "admin-crear-usuario", component: AdminCrearUsuarioComponent },
     { path: "admin-lista-a", component: AdminListaAComponent },
     { path: "admin-lista-c", component: AdminListaClientesComponent },
+    
+   
 
 ];
 

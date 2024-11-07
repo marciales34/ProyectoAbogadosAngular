@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,7 @@ export class ClientesService {
 
   constructor(private http: HttpClient) { }
 
-  ListarClientes(){
-
-    return this.http.get(`${this.API_URI}`);
-
+  ListarClientes(): Observable<any[]> { // Cambia el tipo de retorno aquí
+    return this.http.get<any[]>(`${this.API_URI}`); // Indica que esperas un array de cualquier tipo o ajusta al tipo específico si lo tienes
   }
 }

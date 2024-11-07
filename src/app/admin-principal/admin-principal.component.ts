@@ -26,7 +26,7 @@ export class AdminPrincipalComponent implements OnInit {
   }
 
   getTotalCasos(): void {
-    this.http.get<any>('http://localhost:8080/totalCasos').subscribe(
+    this.http.get<any>('http://localhost:8080/total-casos').subscribe(
       (response) => {
         this.totalCasos = response; // Asigna el total de casos
       },

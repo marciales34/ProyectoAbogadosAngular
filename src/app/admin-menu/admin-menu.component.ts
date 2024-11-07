@@ -28,7 +28,7 @@ export class AdminMenuComponent {
   }
 
   redirigirAdminUsuarios() {
-    this.router.navigate(['/admin-lista-usuarios']);
+    this.router.navigate(['/admin-lista-c']);
   }
 
   redirigirAdminCasos() {
