@@ -135,10 +135,10 @@ export class RegistroCasosAbogadoComponent implements OnInit {
 
   private setIdAbogado(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const idAbogado = localStorage.getItem('abogadoId');
-      console.log('ID del abogado recuperado:', idAbogado); // Verifica si se obtiene el ID
-      if (idAbogado) {
-        this.formularioCaso.patchValue({ id_abogado: idAbogado });
+      const nombreAbogado = localStorage.getItem('username');
+      console.log('ID del abogado recuperado:', nombreAbogado); // Verifica si se obtiene el ID
+      if (nombreAbogado) {
+        this.formularioCaso.patchValue({ id_abogado: nombreAbogado });
         console.log(
           'ID del abogado asignado al formulario:',
           this.formularioCaso.get('id_abogado')?.value
