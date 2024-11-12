@@ -1,0 +1,49 @@
+<section class="seccion1">
+    <div><app-admin-menu></app-admin-menu></div>
+
+</section>
+
+<section class="tabla-abogados-container">
+    <h1>Lista de los Casos de Abogados</h1>
+    <table class="tablaAbogados" id="tabla-abogados">
+        <thead>
+          <tr> <!-- Aquí agregamos el <tr> correctamente -->
+            <th scope="col">ID</th>
+            <th scope="col">Abogado Encargado</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Estado del Caso</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Evidencia</th>
+            <th scope="col">Testimonios</th>
+            <th scope="col">Rama</th>
+            <th scope="col">Se creó</th>
+            <th scope="col">Se actualizó</th>
+            <th scope="col">Acciones</th>
+            
+          </tr>
+        </thead>
+      
+        <tbody>
+          <tr *ngFor="let caso of datos">
+            <td>{{caso.id}}</td>
+            <td>{{caso.id_abogado_encargado}}</td>
+            <td>{{caso.id_cliente}}</td>
+            <td>{{caso.estado_caso}}</td>
+            <td>{{caso.descripcion_caso}}</td>
+            <td>{{caso.evidencia}}</td>
+            <td>{{caso.testimonios}}</td>
+            <td>{{caso.rama_id}}</td>
+            <td>{{caso.creado_en}}</td>
+            <td>{{caso.actualizado_en}}</td>
+            <td>
+                <button class="boton-accion boton-editar">Editar</button>
+                <button class="boton-accion boton-eliminar"  (click)="eliminarCaso(caso.id)">Eliminar</button>
+               
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    <button (click)="volverAdminPrincipal()" class="info-item">Volver a Admin Principal</button>
+</section>
+
+<app-footer></app-footer>

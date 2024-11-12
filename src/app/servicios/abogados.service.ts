@@ -16,4 +16,10 @@ export class AbogadosService {
   ListarAbogados(): Observable<any[]> { // Cambia el tipo de retorno aquí
     return this.http.get<any[]>(`${this.API_URI}`); // Indica que esperas un array de cualquier tipo o ajusta al tipo específico si lo tienes
   }
+
+  // Método para eliminar un caso
+  eliminarAbogado(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_URI}/${id}`);
+
+  }
 }

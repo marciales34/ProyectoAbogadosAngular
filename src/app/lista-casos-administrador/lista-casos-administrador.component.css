@@ -1,11 +1,11 @@
 /* Table Container Styles */
-.tabla-clientes-container {
+.tabla-abogados-container {
     background-color: #c0c0c0;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 1150px;
+    max-width: 1350px;
     margin-top: 0px;
     margin-left: auto;
     margin-right: auto;
@@ -14,7 +14,7 @@
 }
 
 /* Heading Styles */
-.tabla-clientes-container h1 {
+.tabla-abogados-container h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
@@ -22,28 +22,33 @@
 }
 
 /* Table Styles */
-.tablaClientes {
+.tablaAbogados {
     width: 100%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
+    table-layout: fixed; /* Asegura que las columnas tengan el mismo ancho */
 }
 
 /* Table Header Styles */
-.tablaClientes th {
-    background-color:  rgb(14,62,88);
+.tablaAbogados th {
+    background-color: rgb(14,62,88);
     color: white;
     padding: 12px;
     text-align: center;
     border-bottom: 2px solid #ddd;
     font-size: 20px;
+    height: 50px; /* Asegura que el encabezado tenga la misma altura que las filas */
+    box-sizing: border-box; /* Asegura que el padding se incluya en la altura */
 }
 
 /* Table Data Styles */
-.tablaClientes td {
+.tablaAbogados td {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
     font-size: 16px;
+    height: 50px; /* Asegura que las filas de contenido tengan la misma altura que el encabezado */
+    box-sizing: border-box; /* Asegura que el padding se incluya en la altura */
 }
 
 /* Button Styles for Edit and Delete */
@@ -61,7 +66,7 @@
 }
 
 .boton-editar {
-    background-color:rgb(14,62,88);
+    background-color: rgb(14,62,88);
     color: white;
     margin-right: 8px;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -82,27 +87,26 @@
 }
 
 /* Zebra Striping for Table Rows */
-.tablaClientes tbody tr:nth-child(even) {
+.tablaAbogados tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
 /* Hover Effect for Table Rows */
-.tablaClientes tbody tr:hover {
+.tablaAbogados tbody tr:hover {
     background-color: #b8b7b7;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 600px) {
-    .tabla-clientes-container {
+    .tabla-abogados-container {
         padding: 15px;
     }
 
-    .tablaClientes th, .tablaClientes td {
+    .tablaAbogados th, .tablaAbogados td {
         padding: 10px;
         font-size: 12px;
     }
 }
-/* Info Item Styles (applies to input, select, textarea) */
 .info-item {
     padding: 15px;
     border: 1px solid #ddd;

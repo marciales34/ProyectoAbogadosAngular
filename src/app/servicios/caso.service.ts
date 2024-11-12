@@ -7,7 +7,7 @@ import { Caso } from '../caso'; // Asegúrate de tener un modelo de caso
   providedIn: 'root',
 })
 export class CasoService {
-  private baseUrl = 'http://localhost:8080/Casos'; // Cambia esto a tu URL real
+  private baseUrl = 'http://localhost:8080/casos'; // Cambia esto a tu URL real
 
   constructor(private http: HttpClient) {}
 
@@ -15,5 +15,6 @@ export class CasoService {
 getCasosByAbogadoId(abogadoId: number): Observable<Caso[]> {
   return this.http.get<Caso[]>(`${this.baseUrl}?id_abogado_encargado=${abogadoId}`);
 }
+
 }
 

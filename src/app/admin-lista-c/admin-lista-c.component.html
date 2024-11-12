@@ -30,7 +30,7 @@
                     <td>{{modelo.updated_at}}</td>
                     <td>
                         <button class="boton-accion boton-editar">Editar</button>
-                        <button class="boton-accion boton-eliminar">Eliminar</button>
+                        <button class="boton-accion boton-eliminar" (click)="eliminarCliente(modelo.id)">Eliminar</button>
                     </td>
                 </tr>
             </tbody>

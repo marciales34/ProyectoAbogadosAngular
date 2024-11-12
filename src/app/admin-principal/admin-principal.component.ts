@@ -66,7 +66,7 @@ getTotalAbogados(): void {
 
   // Función para redirigir a la lista de casos
   redirigirListaCasos() {
-    this.router.navigate(['/admin-casos']);
+    this.router.navigate(['/admin-lista-casosTotales']);
   }
 
   // Función para redirigir a la lista de abogados
