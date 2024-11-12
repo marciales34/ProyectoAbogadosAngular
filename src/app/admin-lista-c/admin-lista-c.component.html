@@ -1,0 +1,41 @@
+<app-admin-menu></app-admin-menu>
+<main>
+    <section class="tabla-clientes-container">
+        <h1>Lista de Clientes en Base de Datos</h1>
+        <table class="tablaClientes" id="tabla-clientes">
+            <thead>
+                <tr> 
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Contraseña</th>
+                    <th scope="col">Edad</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Se creó</th>
+                    <th scope="col">Se actualizó</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let modelo of datos">
+                    <td>{{modelo.id}}</td>
+                    <td>{{modelo.nombre}}</td>
+                    <td>{{modelo.correo}}</td>
+                    <td>{{modelo.contrasena}}</td>
+                    <td>{{modelo.edad}}</td>
+                    <td>{{modelo.telefono}}</td>
+                    <td>{{modelo.direccion}}</td>
+                    <td>{{modelo.created_at}}</td>
+                    <td>{{modelo.updated_at}}</td>
+                    <td>
+                        <button class="boton-accion boton-editar">Editar</button>
+                        <button class="boton-accion boton-eliminar">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button (click)="volverAdminPrincipal()" class="info-item">Volver a Admin Principal</button>
+    </section>
+</main>
+<app-footer></app-footer>

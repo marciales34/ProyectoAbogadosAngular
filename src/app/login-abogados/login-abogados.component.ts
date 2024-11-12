@@ -41,6 +41,7 @@ export class LoginAbogadosComponent {
     });
   
   }
+  
  
   onSubmitRegistro(): void {
     if (this.formularioRegistro.valid) {
@@ -83,13 +84,27 @@ onSubmitLogin(): void {
       (response) => {
         const nombreUsuario = response.nombre;
         const abogadoId = response.id; // Asegúrate de que `response` tiene el campo `id`
+        const rol = response.rol; // Verifica que el rol también venga en la respuesta
         const accessToken = response.token; // Asegúrate de que `response` tiene el token
+       
 
         localStorage.setItem('username', nombreUsuario);
         localStorage.setItem('abogadoId', abogadoId.toString());
         localStorage.setItem('accessToken', accessToken); // Guardar el token
+
+        if (rol === 'admin') {
+          // Redirige a la vista del administrador
+        
+          this.router.navigate(['/admin-principal']);
+        } else if (rol === 'abogado') {
+          // Redirige a la vista de abogados
+         
+          this.router.navigate(['/Lista-Abogados']);
+        } else {
+          this.alertaService.error('Intente De nuevo');
+        }
+
         this.alertaService.success('Login exitoso', true);
-        this.router.navigate(['/InicioPaginaPrincipal']);
       },
       (error) => {
         if (error.status === 401) {
@@ -104,8 +119,6 @@ onSubmitLogin(): void {
     console.log('Formulario de inicio de sesión inválido');
   }
 }
-
-
 
 
 

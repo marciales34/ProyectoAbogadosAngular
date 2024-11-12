@@ -1,0 +1,38 @@
+
+<app-admin-menu></app-admin-menu>
+
+<main >
+    <section class="stats">
+        <div class="stat-item">
+          <h3>Total de Casos</h3>
+          <p>{{ totalCasos }}</p> 
+        </div>
+        <div class="stat-item">
+          <h3>Total de Usuarios</h3>
+          <p>{{ totalUsuarios }}</p> 
+        </div>
+      </section>
+    
+      <nav class="nav-botones">
+        <div class="boton">
+          <button (click)="redirigirListaCasos()">Lista de Casos</button>
+        </div>
+        <div class="boton">
+          <button (click)="redirigirListaAbogados()">Lista de Abogados</button>
+        </div>
+        <div class="boton">
+          <button (click)="redirigirListaUsuarios()">Lista de Usuarios</button>
+        </div>
+        <div class="boton">
+          <button (click)="redirigirCrearUsuario()">Crear Usuario</button>
+        </div>
+        <!--
+        <div class="boton">
+          <button (click)="redirigirCrearCaso()">Crear Caso</button>
+        </div> -->
+      </nav>
+
+</main>
+
+<app-footer></app-footer>
+

@@ -1,0 +1,101 @@
+/* Container Styles */
+.tabla-abogados-container {
+    background-color: rgb(14, 62, 88);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Heading Styles */
+.tabla-abogados-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Form Group Styling */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Info Item Styles (applies to input, select, textarea) */
+.info-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 18px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    color: #333; /* Color del texto de entrada */
+}
+
+/* Placeholder color to black */
+::placeholder {
+    color: #000000; /* Placeholder in black */
+    opacity: 1; /* Ensure full opacity */
+}
+
+/* Hover Effect for Info Items */
+.info-item:hover {
+    background-color: #e3f2fd; /* Lighter color on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+/* Label Styles (titles white) */
+label {
+    color: #ffffff; /* Labels (titles) in white */
+    font-size: 20px;
+}
+
+/* Button Styles */
+button.info-item {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button.info-item:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .tabla-abogados-container {
+        padding: 20px;
+    }
+
+    .info-item {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    button.info-item {
+        font-size: 16px;
+    }
+}
+
+/* General body styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+/* General link styling */
+a {
+    text-decoration: none;
+    color: #007bff;
+}

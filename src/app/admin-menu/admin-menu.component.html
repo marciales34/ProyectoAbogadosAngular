@@ -1,0 +1,33 @@
+<header>
+    <img (click)="redirigirAdminPrincipal()" class="logo2" src="../../assets/img/logo11.png" alt="logo" />
+
+    <div class="eclipses">
+        <div class="circulo1"></div>
+        <div class="circulo2"></div>
+        <div class="circulo3"></div>
+    </div>
+
+    <div class="nav-botones">
+        <div class="boton" *ngIf="!loggedIn()">
+            <button type="" class="signin" (click)="redirigirALogin()">Acceso</button>
+        </div>
+        <div class="boton" *ngIf="!loggedIn()">
+            <button type="" class="signin2" (click)="redirigirALogin()">Registro</button>
+        </div>
+        <div class="boton" *ngIf="loggedIn()">
+            <button type="button" class="loggedin" >Mi Cuenta</button>
+        </div>
+
+        <div class="boton" *ngIf="loggedIn()">
+            <button type="button" class="loggedin" (click)="logout()">¡Welcome! {{ getUsername() }}</button>
+        </div>
+
+    </div>
+
+    <div class="navbar">
+        <button class="barra" type="button" (click)="redirigirAdminPrincipal()">Principal</button>
+<button class="barra" type="button" (click)="redirigirAdminUsuarios()">Usuarios</button>
+<button class="barra" type="button" (click)="redirigirAdminCasos()">Casos</button>
+
+    </div>
+</header>
