@@ -1,0 +1,56 @@
+<section class="seccion1">
+    <div><app-encabezado></app-encabezado></div>
+</section>
+
+<section class="tabla-clientes-container">
+    <h1>Casos del Cliente</h1>
+
+    <div *ngIf="!isLoggedIn" class="mensaje-sesion">
+        <h1>Debes iniciar sesión primero.</h1>
+    </div>
+
+    <div *ngIf="isLoggedIn">
+        <!-- Mensaje si no hay casos disponibles de el cliente -->
+        <div *ngIf="noCasosAvailable" class="mensaje-no-casos">
+            <h2>No hay casos disponibles.</h2>
+        </div>
+
+        <div *ngFor="let caso of casos" class="caso-container">
+            <h2>Caso ID: {{ caso.id }}</h2>
+            <div class="clientes-info">
+                <div class="info-item">
+                    <strong>Cliente:</strong> {{ caso.id_cliente }}
+                </div>
+                <div class="info-item">
+                    <strong>Identificador del Cliente:</strong> {{ caso.id_cliente }}
+                </div>
+                <div class="info-item">
+                    <strong>Estado del Caso:</strong> {{ caso.estado_caso }}
+                </div>
+                <div class="info-item">
+                    <strong>Descripción del Caso:</strong> {{ caso.descripcion_caso }}
+                </div>
+                <div class="info-item">
+                    <strong>Evidencias:</strong> {{ caso.evidencia }}
+                </div>
+                <div class="info-item">
+                    <strong>Testimonios:</strong> {{ caso.testimonios }}
+                </div>
+                <div class="info-item">
+                    <strong>Se creó:</strong> {{ caso.creado_en }}
+                </div>
+                <div class="info-item">
+                    <strong>Se actualizó:</strong> {{ caso.actualizado_en }}
+                </div>
+                <div class="info-item">
+                    <strong>Rama:</strong> {{ caso.rama_id }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <app-footer></app-footer>
+</footer>

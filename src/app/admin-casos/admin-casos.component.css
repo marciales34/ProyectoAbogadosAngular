@@ -71,6 +71,7 @@ a {
     }
 }
 
+<<<<<<< HEAD
 /* Formulario de Caso Container Styles */
 .formulario-caso {
     background-color: rgb(14, 62, 88);
@@ -158,3 +159,115 @@ button.info-item {
     background-color: #0056b3;  /* Cambio de color al pasar el ratón (darker blue) */
     align-items: center;
 }
+=======
+.boton-crear-caso {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50; /* Color verde */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.boton-crear-caso:hover {
+    background-color: #45a049; /* Color verde oscuro al pasar el ratón */
+}
+/* Estilos para el modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.modal-content {
+    background-color: white; /* Color de fondo del modal */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para el efecto de elevación */
+    width: 90%; /* Ancho del modal */
+    max-width: 600px; /* Ancho máximo del modal */
+    position: relative; /* Para el posicionamiento interno */
+}
+
+/* Estilos para los grupos de formulario */
+.form-group {
+    margin-bottom: 15px; /* Espacio entre los grupos */
+}
+
+.form-group label {
+    display: block; /* Etiquetas en línea de bloque */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 5px; /* Espacio debajo de la etiqueta */
+}
+
+.form-group input, .form-group textarea {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde ligero */
+    border-radius: 4px; /* Bordes redondeados */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra interna */
+}
+
+/* Estilos para los botones */
+.button-group {
+    display: flex; /* Uso de flexbox para alinear los botones */
+    justify-content: space-between; /* Espacio entre botones */
+}
+
+.info-item {
+    background-color: #007BFF; /* Color del botón */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    padding: 10px 15px; /* Espaciado interno */
+    cursor: pointer; /* Cursor de mano */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.info-item:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el ratón */
+}
+
+.cancel-button {
+    background-color: #dc3545; /* Color rojo para cancelar */
+}
+
+.cancel-button:hover {
+    background-color: #c82333; /* Color más oscuro al pasar el ratón */
+}
+.suggestions {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 10;
+}
+
+.suggestions li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestions li:hover {
+    background-color: #f0f0f0;
+}
+
+
+>>>>>>> 5217ae99b4a250cf906d188fd812ba8d02b4bbb3
