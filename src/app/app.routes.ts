@@ -15,6 +15,7 @@ import { AdminCasosComponent} from './admin-casos/admin-casos.component';
 import { AdminCrearUsuarioComponent } from './admin-crear-usuario/admin-crear-usuario.component';
 import { AdminListaAComponent} from './admin-lista-a/admin-lista-a.component';
 import { AdminListaClientesComponent} from './admin-lista-c/admin-lista-c.component';
+import { DatosAdminCuentaComponent } from './datos-admin-cuenta/datos-admin-cuenta.component';
 
 
 export const routes: Routes = [
@@ -36,6 +37,7 @@ export const routes: Routes = [
     { path: "admin-crear-usuario", component: AdminCrearUsuarioComponent },
     { path: "admin-lista-a", component: AdminListaAComponent },
     { path: "admin-lista-c", component: AdminListaClientesComponent },
+    { path: "admin-lista-cuenta", component: DatosAdminCuentaComponent },
 
 ];
 

@@ -1,5 +1,5 @@
 <header>
-    <img (click)="redirigirAdminPrincipal()" class="logo2" src="../../assets/img/logo11.png" alt="logo" />
+    <img (click)="redirigirAdminPrincipal()" class="logo2" src="../../assets/img/logoabogados2.png" alt="logo" />
 
     <div class="eclipses">
         <div class="circulo1"></div>
@@ -15,11 +15,11 @@
             <button type="" class="signin2" (click)="redirigirALogin()">Registro</button>
         </div>
         <div class="boton" *ngIf="loggedIn()">
-            <button type="button" class="loggedin" >Mi Cuenta</button>
+            <button type="button" class="loggedin" (click)="redirigirADatosCuentaAbogados()" >Mi Cuenta</button>
         </div>
 
         <div class="boton" *ngIf="loggedIn()">
-            <button type="button" class="loggedin" (click)="logout()">¡Welcome! {{ getUsername() }}</button>
+            <button type="button" class="loggedin" (click)="logout()">Administrador {{ getUsername() }}</button>
         </div>
 
     </div>

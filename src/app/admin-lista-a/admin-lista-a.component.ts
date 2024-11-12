@@ -39,7 +39,6 @@ listarabogados(){
     err => console.log(err)
 
   );
-  
 
 }
 volverAdminPrincipal() {

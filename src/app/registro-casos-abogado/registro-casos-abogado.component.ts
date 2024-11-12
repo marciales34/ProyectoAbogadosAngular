@@ -22,7 +22,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-registro-casos-abogado',
   standalone: true,
-  imports: [EncabezadoComponent, ReactiveFormsModule, NgIf, FooterComponent],
+  imports: [EncabezadoComponent, ReactiveFormsModule, FooterComponent],
   templateUrl: './registro-casos-abogado.component.html',
   styleUrls: ['./registro-casos-abogado.component.css'],
 })
@@ -103,7 +103,7 @@ export class RegistroCasosAbogadoComponent implements OnInit {
           if (result.isConfirmed) {
             // Si el usuario confirma, proceder con el registro
             this.http
-              .post('http://localhost:8080/RegistraCasos', casoData)
+              .post('http://localhost:8080/registra-casos', casoData)
               .subscribe(
                 (response) => {
                   this.alertaService.success(

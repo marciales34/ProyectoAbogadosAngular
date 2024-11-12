@@ -29,7 +29,7 @@ export class CasoAbogadosComponent {
     console.log('¿Usuario está logueado?', this.isLoggedIn);
   
     if (this.isLoggedIn) {
-      this.http.get<Caso[]>(`http://localhost:8080/Casos/${abogadoId}`).subscribe(
+      this.http.get<Caso[]>(`http://localhost:8080/casos/${abogadoId}`).subscribe(
         (response: Caso[]) => {
           this.casos = response; 
           console.log('Casos obtenidos:', this.casos); 

@@ -1,3 +1,18 @@
+/* General body styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* General link styling */
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
 /* Table Container Styles */
 .tabla-abogados-container {
     background-color: rgb(14, 62, 88);
@@ -9,22 +24,17 @@
     margin: 20px auto;
     position: relative;
     z-index: 10;
-    margin-top: 2%;
+    margin-top: 2%; /* Spacing at the top to ensure it doesn't touch other elements */
+    box-sizing: border-box;
 }
 
 /* Heading Styles */
-.tabla-abogados-container h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #ffffff;
-    text-align: center;
-}
-
+.tabla-abogados-container h1,
 .tabla-abogados-container h2 {
     font-size: 28px;
     margin-bottom: 20px;
     color: #ffffff;
-    margin-top: 5%;
+    text-align: center;
 }
 
 /* Abogado Info Styles */
@@ -34,7 +44,7 @@
     gap: 15px;
 }
 
-/* Info Item Styles */
+/* Info Item Styles (for table input fields) */
 .info-item {
     padding: 15px;
     border: 1px solid #ddd;
@@ -49,7 +59,7 @@
     background-color: #e3f2fd;
 }
 
-/* Responsive Adjustments */
+/* Responsive Adjustments for table */
 @media (max-width: 600px) {
     .tabla-abogados-container {
         padding: 20px;
@@ -61,4 +71,90 @@
     }
 }
 
-/* Additional styles can go here */
+/* Formulario de Caso Container Styles */
+.formulario-caso {
+    background-color: rgb(14, 62, 88);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin: 40px auto; /* Increased margin-top to separate from other content */
+    position: relative;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+/* Heading for Formulario de Caso */
+.formulario-caso h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Form Group Styling */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Info Item Styles for input, select, textarea (form fields) */
+.formulario-caso .info-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 18px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    color: #333;
+}
+
+/* Placeholder color to black */
+::placeholder {
+    color: #000000;
+    opacity: 1;
+}
+
+/* Hover Effect for Form Fields */
+.formulario-caso .info-item:hover {
+    background-color: #e3f2fd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Label Styles (for form fields) */
+.formulario-caso label {
+    color: #ffffff;
+    font-size: 20px;
+}
+
+/* Button Styles for form submission */
+button.info-item {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.info-itemguardar{
+    background-color: #007bff;  /* Cambiar el color de fondo a azul */
+    color: white;               /* El texto será blanco */
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.info-itemguardar:hover {
+    background-color: #0056b3;  /* Cambio de color al pasar el ratón (darker blue) */
+    align-items: center;
+}

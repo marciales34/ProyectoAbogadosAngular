@@ -28,6 +28,15 @@ export class EncabezadoComponent {
     return isPlatformBrowser(this.platformId) ? localStorage.getItem('username') || '' : '';
   }
 
+  getUserRole(): string {
+    const rol = isPlatformBrowser(this.platformId) ? localStorage.getItem('rol') || 'Invitado' : 'Invitado';
+    console.log('Rol recuperado:', rol); // Depuración para ver el valor del rol
+    return rol;
+  }
+  
+  
+
+
   // Método para manejar el cierre de sesión
 logout() {
   if (isPlatformBrowser(this.platformId)) {

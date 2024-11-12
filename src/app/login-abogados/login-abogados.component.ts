@@ -90,6 +90,7 @@ onSubmitLogin(): void {
 
         localStorage.setItem('username', nombreUsuario);
         localStorage.setItem('abogadoId', abogadoId.toString());
+        localStorage.setItem('rol', rol); // Guardar el rol
         localStorage.setItem('accessToken', accessToken); // Guardar el token
 
         if (rol === 'admin') {
@@ -99,7 +100,7 @@ onSubmitLogin(): void {
         } else if (rol === 'abogado') {
           // Redirige a la vista de abogados
          
-          this.router.navigate(['/Lista-Abogados']);
+          this.router.navigate(['/InicioPaginaPrincipal']);
         } else {
           this.alertaService.error('Intente De nuevo');
         }

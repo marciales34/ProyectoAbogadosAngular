@@ -10,6 +10,9 @@
     position: relative;
     z-index: 10;
 }
+h2{
+    color: #ffffff;
+}
 
 /* Heading Styles */
 .tabla-abogados-container h1 {

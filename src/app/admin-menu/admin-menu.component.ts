@@ -56,5 +56,9 @@ export class AdminMenuComponent {
   getUsername(): string {
     return isPlatformBrowser(this.platformId) ? localStorage.getItem('username') || '' : '';
   }
+  
+  redirigirADatosCuentaAbogados() {
+    this.router.navigateByUrl('/admin-lista-cuenta'); 
+  }
 
 }
