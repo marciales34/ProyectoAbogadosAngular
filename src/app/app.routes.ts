@@ -23,7 +23,7 @@ import { ListaCasosAdministradorComponent } from './lista-casos-administrador/li
 export const routes: Routes = [
     {
         path: "",
-        redirectTo: "/Lista-Clientes",
+        redirectTo: "/InicioPaginaPrincipal",
         pathMatch: "full"
     },
     { path: "Lista-Abogados", component: ListaAbogadosComponent },
