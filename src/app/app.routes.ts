@@ -39,12 +39,7 @@ export const routes: Routes = [
     { path: "admin-crear-usuario", component: AdminCrearUsuarioComponent },
     { path: "admin-lista-a", component: AdminListaAComponent },
     { path: "admin-lista-c", component: AdminListaClientesComponent },
-<<<<<<< HEAD
     { path: "admin-lista-cuenta", component: DatosAdminCuentaComponent },
-=======
-    
-   
->>>>>>> 5217ae99b4a250cf906d188fd812ba8d02b4bbb3
 
 ];
 
