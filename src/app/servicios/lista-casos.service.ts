@@ -1,22 +1,37 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Caso } from '../caso';  // Asegúrate de que tu clase Caso esté correctamente importada
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListaCasosService {
+  private apiUrl = 'http://localhost:8080/casos';  // Cambia esto por la URL de tu API
+  private apiUrlCrearCaso = 'http://localhost:8080/registra-casos';
 
-  private API_URI = "http://localhost:8080/casos";
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  ListarAbogados(): Observable<any[]> { // Cambia el tipo de retorno aquí
-    return this.http.get<any[]>(`${this.API_URI}`); // Indica que esperas un array de cualquier tipo o ajusta al tipo específico si lo tienes
+  // Listar todos los casos
+  listarCasos(): Observable<Caso[]> {
+    return this.http.get<Caso[]>(this.apiUrl);
   }
 
-   // Método para eliminar un caso
-   eliminarCaso(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.API_URI}/${id}`);
+  // Crear un nuevo caso
+  crearCaso(caso: Caso): Observable<Caso> {
+    return this.http.post<Caso>(this.apiUrlCrearCaso, caso);
+  }
+
+  // Actualizar un caso existente
+  actualizarCaso(id: number, caso: Caso): Observable<Caso> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<Caso>(url, caso);
+  }
+
+  // Eliminar un caso
+  eliminarCaso(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
   }
 }

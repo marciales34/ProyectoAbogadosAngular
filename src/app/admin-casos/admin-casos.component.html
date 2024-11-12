@@ -9,8 +9,7 @@
         <h1>Debes iniciar sesión primero.</h1>
     </div>
 
-    <div *ngIf="isLoggedIn">
-        <!-- Mensaje si no hay casos disponibles -->
+    
         <div *ngIf="noCasosAvailable" class="mensaje-no-casos">
             <h2>No hay casos disponibles.</h2>
         </div>
@@ -46,92 +45,87 @@
                     <strong>Rama:</strong> {{ caso.rama_id }}
                 </div>
             </div>
+            <button (click)="abrirFormularioEdicion(caso)" class="info-item boton-editar-caso">Editar Caso</button>
         </div>
 
-        <!-- Botón para abrir el formulario de nuevo caso -->
-        <br><button (click)="abrirFormularioCaso()" class="info-item">Crear Nuevo Caso</button>
+        <button (click)="abrirFormularioCaso()" class="info-item boton-crear-caso">Crear Nuevo Caso</button>
 
-        <!-- Formulario para crear un nuevo caso -->
-        <div *ngIf="formularioVisible" class="formulario-caso" id="formulario-caso">
-          <h2>Crear Nuevo Caso</h2>
-            <form (ngSubmit)="crearCaso()" id="nuevo-caso-form">
-                
-                <!-- Correo del Cliente -->
-                <div class="form-group">
-                    <label for="correo_cliente">Correo del Cliente:</label>
-                    <input type="email" id="correo_cliente" [(ngModel)]="correoCliente" name="correo_cliente" class="info-item" required>
-                    <button type="button" (click)="buscarCliente()" class="info-itemguardar">Buscar Cliente</button>
-                </div>
-        
-                <!-- ID del Cliente -->
-                <div class="form-group">
-                    <label for="id_cliente">ID del Cliente:</label>
-                    <input type="text" id="id_cliente" [(ngModel)]="nuevoCaso.id_cliente" name="id_cliente" class="info-item" readonly required>
-                </div>
-        
-                <!-- ID del Abogado Encargado -->
-                <div class="form-group">
-                    <label for="id_abogado">Abogado Encargado:</label>
-                    <select id="id_abogado" [(ngModel)]="nuevoCaso.id_abogado_encargado" name="id_abogado" class="info-item" required>
-                    <option value="" disabled selected>Selecciona un abogado</option>
-                    <option *ngFor="let abogado of abogados" [value]="abogado.id">{{ abogado.nombre }}</option>
-                    </select>
-                </div>
-                
-                <!-- Estado del Caso -->
-                <div class="form-group">
-                    <label for="estado_caso">Estado del Caso</label>
-                    <select id="estado_caso" [(ngModel)]="nuevoCaso.estado_caso" name="estado_caso" class="info-item" required>
-                        <option value="abierto">Abierto</option>
-                        <option value="finalizado">Finalizado</option>
-                    </select>
-                </div>
-        
-                <!-- Descripción del Caso -->
-                <div class="form-group">
-                    <label for="descripcion_caso">Descripción del Caso:</label>
-                    <textarea id="descripcion_caso" [(ngModel)]="nuevoCaso.descripcion_caso" name="descripcion_caso" class="info-item" rows="4" required></textarea>
-                </div>
-        
-                <!-- Evidencias -->
-                <div class="form-group">
-                    <label for="evidencia">Evidencias:</label>
-                    <textarea id="evidencia" [(ngModel)]="nuevoCaso.evidencia" name="evidencia" class="info-item" rows="3" required></textarea>
-                </div>
-        
-                <!-- Testimonios -->
-                <div class="form-group">
-                    <label for="testimonios">Testimonios:</label>
-                    <textarea id="testimonios" [(ngModel)]="nuevoCaso.testimonios" name="testimonios" class="info-item" rows="3" required></textarea>
-                </div>
-        
-                <!-- Rama del Derecho -->
-                <div class="form-group">
-                    <label for="rama_id">Rama del Derecho</label>
-                    <select id="rama_id" [(ngModel)]="nuevoCaso.rama_id" name="rama_id" class="info-item" required>
-                        <option value="" disabled selected>Selecciona tu especialización</option>
-                        <option value="1">Derecho Civil</option>
-                        <option value="2">Derecho Penal</option>
-                        <option value="3">Derecho Administrativo</option>
-                        <option value="4">Derecho Laboral</option>
-                        <option value="5">Derecho Comercial</option>
-                        <option value="6">Derecho Internacional</option>
-                        <option value="7">Derecho Constitucional</option>
-                        <option value="8">Derecho Ambiental</option>
-                    </select>
-                    
-                </div>
-        
-                <!-- Botón para enviar -->
-                <button type="submit" class="info-itemguardar" id="boton-guardar">Guardar Caso</button>
-            </form>
+        <div *ngIf="formularioVisible" class="modal-overlay">
+            <div class="modal-content">
+                <h2>{{ casoSeleccionado ? 'Editar Caso' : 'Crear Nuevo Caso' }}</h2>
+                <form (ngSubmit)="casoSeleccionado ? actualizarCaso() : crearCaso()">
+                    <!-- Campo de búsqueda para Abogado -->
+<div class="form-group">
+    <label for="abogado">Abogado Encargado:</label>
+    <input type="text" id="abogado" [(ngModel)]="filtroAbogado" (input)="buscarAbogados()" placeholder="Buscar abogado..." name="abogado" required>
+    <ul *ngIf="resultadosAbogados.length > 0" class="suggestions">
+        <li *ngFor="let abogado of resultadosAbogados" (click)="seleccionarAbogado(abogado)">
+            {{ abogado.nombre }}
+        </li>
+    </ul>
+</div>
+
+<!-- Campo de búsqueda para Cliente -->
+<div class="form-group">
+    <label for="cliente">Cliente:</label>
+    <input type="text" id="cliente" [(ngModel)]="filtroCliente" (input)="buscarClientes()" placeholder="Buscar cliente..." name="cliente" required>
+    <ul *ngIf="resultadosClientes.length > 0" class="suggestions">
+        <li *ngFor="let cliente of resultadosClientes" (click)="seleccionarCliente(cliente)">
+            {{ cliente.nombre }}
+        </li>
+    </ul>
+</div>
+
+                    <div class="form-group">
+                        <label for="descripcion_caso">Descripción del Caso:</label>
+                        <textarea id="descripcion_caso" [(ngModel)]="casoEnEdicion.descripcion_caso" name="descripcion_caso" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado_caso">Estado del Caso:</label>
+                        <select id="estado_caso" [(ngModel)]="casoEnEdicion.estado_caso" name="estado_caso" required>
+                            <option value="" disabled selected>Seleccione un estado</option>
+                            <option value="abierto">Abierto</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="evidencia">Evidencias:</label>
+                        <textarea id="evidencia" [(ngModel)]="casoEnEdicion.evidencia" name="evidencia" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="testimonios">Testimonios:</label>
+                        <textarea id="testimonios" [(ngModel)]="casoEnEdicion.testimonios" name="testimonios" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rama_id">Rama del Derecho:</label>
+                        <select id="rama_id" [(ngModel)]="casoEnEdicion.rama_id" name="rama_id" required>
+                            <option value="" disabled selected>Seleccione una rama</option>
+                            <option value="1">Derecho Civil</option>
+                            <option value="2">Derecho Penal</option>
+                            <option value="3">Derecho Administrativo</option>
+                            <option value="4">Derecho Laboral</option>
+                            <option value="5">Derecho Comercial</option>
+                            <option value="6">Derecho Internacional</option>
+                            <option value="7">Derecho Constitucional</option>
+                            <option value="8">Derecho Ambiental</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="info-item">Guardar Caso</button>
+                        <button type="button" (click)="cerrarFormularioCaso()" class="info-item cancel-button">Cancelar</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        
 
-    </div>
 
-    <!-- Botón para volver a Admin Principal -->
-    <br><button (click)="volverAdminPrincipal()" class="info-item">Volver a Admin Principal</button>
+
+    <button (click)="volverAdminPrincipal()" class="info-item">Volver a Admin Principal</button>
 </section>
 
 <footer>

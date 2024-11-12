@@ -1,41 +1,93 @@
 <app-admin-menu></app-admin-menu>
+
 <main>
-    <section class="tabla-clientes-container">
-        <h1>Lista de Clientes en Base de Datos</h1>
-        <table class="tablaClientes" id="tabla-clientes">
-            <thead>
-                <tr> 
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Contraseña</th>
-                    <th scope="col">Edad</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Dirección</th>
-                    <th scope="col">Se creó</th>
-                    <th scope="col">Se actualizó</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let modelo of datos">
-                    <td>{{modelo.id}}</td>
-                    <td>{{modelo.nombre}}</td>
-                    <td>{{modelo.correo}}</td>
-                    <td>{{modelo.contrasena}}</td>
-                    <td>{{modelo.edad}}</td>
-                    <td>{{modelo.telefono}}</td>
-                    <td>{{modelo.direccion}}</td>
-                    <td>{{modelo.created_at}}</td>
-                    <td>{{modelo.updated_at}}</td>
-                    <td>
-                        <button class="boton-accion boton-editar">Editar</button>
-                        <button class="boton-accion boton-eliminar" (click)="eliminarCliente(modelo.id)">Eliminar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <button (click)="volverAdminPrincipal()" class="info-item">Volver a Admin Principal</button>
-    </section>
+  <section class="tabla-clientes-container">
+    <h1>Lista de Clientes en Base de Datos</h1>
+    <table class="tablaClientes" id="tabla-clientes">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Contraseña</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Se creó</th>
+          <th scope="col">Se actualizó</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of datos">
+          <td>{{ cliente.id }}</td>
+          <td>{{ cliente.nombre }}</td>
+          <td>{{ cliente.correo }}</td>
+          <td>{{ cliente.contrasena }}</td>
+          <td>{{ cliente.edad }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>{{ cliente.direccion }}</td>
+          <td>{{ cliente.created_at }}</td>
+          <td>{{ cliente.updated_at }}</td>
+          <td>
+            <button class="boton-accion boton-editar" (click)="abrirFormularioEdicion(cliente)">Editar</button>
+            <button class="boton-accion boton-eliminar" (click)="eliminarCliente(cliente.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button (click)="volverAdminPrincipal()" class="info-item">Volver a Admin Principal</button>
+  </section>
+
+ <!-- Modal de Edición de Cliente -->
+<div *ngIf="formularioC" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Editar Cliente</h2>
+      <form (ngSubmit)="actualizarCliente()">
+        <!-- Nombre del Cliente -->
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" [(ngModel)]="clienteEnEdicion.nombre" name="nombre" required />
+        </div>
+  
+        <!-- Correo del Cliente -->
+        <div class="form-group">
+          <label for="correo">Correo:</label>
+          <input type="email" id="correo" [(ngModel)]="clienteEnEdicion.correo" name="correo" required />
+        </div>
+  
+        <!-- Edad del Cliente -->
+        <div class="form-group">
+          <label for="edad">Edad:</label>
+          <input type="number" id="edad" [(ngModel)]="clienteEnEdicion.edad" name="edad" required />
+        </div>
+  
+        <!-- Teléfono del Cliente -->
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" id="telefono" [(ngModel)]="clienteEnEdicion.telefono" name="telefono" required />
+        </div>
+  
+        <!-- Dirección del Cliente -->
+        <div class="form-group">
+          <label for="direccion">Dirección:</label>
+          <input type="text" id="direccion" [(ngModel)]="clienteEnEdicion.direccion" name="direccion" required />
+        </div>
+  
+        <!-- Contraseña del Cliente -->
+        <div class="form-group">
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" [(ngModel)]="clienteEnEdicion.contrasena" name="password" required />
+        </div>
+  
+        <!-- Botones de Acción -->
+        <div class="button-group">
+          <button type="submit" class="info-item">Actualizar Cliente</button>
+          <button type="button" (click)="cerrarFormularioEdicion()" class="info-item cancel-button">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </main>
+
 <app-footer></app-footer>
