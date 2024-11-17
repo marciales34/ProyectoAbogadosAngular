@@ -14,9 +14,7 @@ import { NgIf } from '@angular/common';
 })
 export class LoginAbogadosComponent implements OnInit {
 
- 
   formularioRegistro: FormGroup;
-  formularioRegistroCliente: FormGroup; 
   formularioLogin: FormGroup;
 
   constructor(
@@ -26,31 +24,24 @@ export class LoginAbogadosComponent implements OnInit {
     private router: Router,
     private alertaService: AlertaService
   ) {
-    //----Intento de sebas
+    // Formulario de registro
     this.formularioRegistro = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       correo: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      contrasena: ['', [Validators.required, Validators.minLength(6)]],
       telefono: ['', [Validators.required]],
-      rama_id: ['', Validators.required]
+      edad: ['', [Validators.required, Validators.pattern('^[0-9]+$')]], // Validación para asegurar que solo sean números
+      direccion: ['', [Validators.required]] // Validación para asegurar que el campo no esté vacío
     });
 
-    // Formulario para registrar clientes-
-    this.formularioRegistroCliente = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(3)]],
-      correo: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      telefono: ['', [Validators.required]]
-    });
-
-    // Inicializar el formulario de inicio de sesión
+    // Formulario de login
     this.formularioLogin = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      tipoUsuario: ['', Validators.required]  // Agrega este campo
+      tipoUsuario: ['', Validators.required] // Agrega este campo
     });
   }
-  
+
   ngOnInit(): void {
     const signUpButton = this.elementRef.nativeElement.querySelector('#signUp');
     const signInButton = this.elementRef.nativeElement.querySelector('#signIn');
@@ -69,149 +60,89 @@ export class LoginAbogadosComponent implements OnInit {
     }
   }
 
-  // Método para registrar abogados
   onSubmitRegistro(): void {
     if (this.formularioRegistro.valid) {
       const formData = this.formularioRegistro.value;
-
-      this.http.post('http://localhost:8080/Enviar', formData).subscribe(
+  
+      console.log('Datos enviados al servidor:', formData);
+  
+      this.http.post('http://localhost:8080/RegistrarCliente', formData).subscribe(
         (response: any) => {
           console.log('Respuesta del servidor:', response);
           const abogadoId = response.id;
           const accessToken = response.token;
-
-          localStorage.setItem('username', formData.nombre); 
+  
+          localStorage.setItem('username', formData.nombre);
           localStorage.setItem('abogadoId', abogadoId);
           localStorage.setItem('accessToken', accessToken);
-
+  
           this.alertaService.success(response.message, true);
-          this.router.navigate(['/Lista-Abogados']);
+          this.router.navigate(['/clientes']);
         },
         (error) => {
+          // Revisar el contenido del error más detalladamente
+          console.error('Error de registro:', error);
           if (error.status === 409) {
-            const errorMessage = error.error.message || 'Error al registrar';
+            const errorMessage = error.error?.message || 'El correo ya está registrado';
             this.alertaService.error(errorMessage);
           } else {
             this.alertaService.error('Error al registrar, intenta de nuevo');
           }
-          console.error('Error al registrar', error);
         }
       );
     } else {
       console.log('Formulario de registro inválido', this.formularioRegistro.errors);
     }
   }
+  
 
-  // Método para registrar clientes
-  onSubmitRegistroCliente(): void {
-    if (this.formularioRegistroCliente.valid) {
-      const formData = this.formularioRegistroCliente.value;
+  onSubmitLogin(): void {
+    if (this.formularioLogin.valid) {
+      const tipoUsuario = this.formularioLogin.value.tipoUsuario;
 
-      this.http.post('http://localhost:8080/RegistrarCliente', formData).subscribe(
-        (response: any) => {
-          console.log('Respuesta del servidor:', response);
-          const clienteId = response.id;
-          const accessToken = response.token;
-
-          localStorage.setItem('username', formData.nombre); 
-          localStorage.setItem('clienteId', clienteId);
-          localStorage.setItem('accessToken', accessToken);
-
-          this.alertaService.success(response.message, true);
-          this.router.navigate(['/clientes']);
-        },
-        (error) => {
-          if (error.status === 409) {
-            const errorMessage = error.error.message || 'Error al registrar cliente';
-            this.alertaService.error(errorMessage);
-          } else {
-            this.alertaService.error('Error al registrar cliente, intenta de nuevo');
-          }
-          console.error('Error al registrar cliente', error);
-        }
-      );
+      if (tipoUsuario === 'cliente') {
+        this.onSubmitLoginCliente(); // Llamada al método específico para clientes
+      } else {
+        this.onSubmitLoginAbogado(); // Llamada al método específico para abogados
+      }
     } else {
-      console.log('Formulario de registro de cliente inválido', this.formularioRegistroCliente.errors);
+      console.log('Formulario de inicio de sesión inválido');
     }
   }
 
-//Intento de sebas 
-  onSubmitLogin(): void {
-    if (this.formularioLogin.valid) {
-        const loginData = this.formularioLogin.value;
-        const tipoUsuario = loginData.tipoUsuario; // Esto obtiene el tipo de usuario (cliente o abogado)
-        let url = '';
-
-        // Dependiendo del tipo de usuario, hacemos la petición a la URL correspondiente
-        if (tipoUsuario === 'abogado') {
-            url = 'http://localhost:8080/login'; // Login para abogados
-        } else if (tipoUsuario === 'cliente') {
-            url = 'http://localhost:8080//login-clientes'; // Login para clientes
-        } else {
-            this.alertaService.error('Por favor, selecciona un tipo de usuario.');
-            return;
-        }
-
-        this.http.post<any>(url, loginData).subscribe(
-            (response) => {
-                console.log('Respuesta del servidor:', response);
-                const nombreUsuario = response.nombre;
-                const userId = response.id;
-                const rol = response.rol;
-                const accessToken = response.token;
-
-                localStorage.setItem('username', nombreUsuario);
-                localStorage.setItem('userId', userId.toString());
-                localStorage.setItem('accessToken', accessToken);
-
-                // Redirigir dependiendo del rol
-                if (rol === 'admin') {
-                    this.router.navigate(['/admin-principal']);
-                } else if (rol === 'abogado') {
-                    this.router.navigate(['/InicioPaginaPrincipal']);
-                } else if (rol === 'cliente') {
-                    this.router.navigate(['/clientes']);
-                } else {
-                    this.alertaService.error('Rol no válido, intente de nuevo.');
-                }
-
-                this.alertaService.success('Login exitoso', true);
-            },
-            (error) => {
-                if (error.status === 401) {
-                    this.alertaService.error('Credenciales incorrectas. Por favor, intenta de nuevo.');
-                } else {
-                    console.error('Error en el inicio de sesión', error);
-                    this.alertaService.error('Error al iniciar sesión, intenta de nuevo más tarde.');
-                }
-            }
-        );
-    } else {
-        console.log('Formulario de inicio de sesión inválido');
-    }
-}
-//------------------
   onSubmitLoginCliente(): void {
     if (this.formularioLogin.valid) {
       const loginData = {
         correo: this.formularioLogin.value.correo,
-        contrasena: this.formularioLogin.value.password // Cambia 'password' a 'contrasena'
+        contrasena: this.formularioLogin.value.password
       };
-  
+
+      console.log('Datos de inicio de sesión para cliente:', loginData);
+
       this.http.post<any>('http://localhost:8080/login-clientes', loginData).subscribe(
         (response) => {
-          this.router.navigate(['/clientes']);
-          console.log('Respuesta del servidor:', response);
-          const nombreUsuario = response.nombre;
+          console.log('Respuesta del servidor para cliente:', response);
 
-          localStorage.setItem('username', nombreUsuario);
-          this.alertaService.success('Login exitoso', true);
+          if (response.nombre && response.id) {
+            const nombreUsuario = response.nombre;
+            const clienteId = response.id;
+            const accessToken = response.token;
+
+            localStorage.setItem('username', nombreUsuario);
+            localStorage.setItem('clienteId', clienteId.toString());
+            localStorage.setItem('accessToken', accessToken);
+
+            this.router.navigate(['/clientes']);
+            this.alertaService.success('Login exitoso', true);
+          } else {
+            this.alertaService.error('Datos de usuario incorrectos');
+          }
         },
         (error) => {
           if (error.status === 401) {
             this.alertaService.error('Credenciales incorrectas. Por favor, intenta de nuevo.');
           } else {
-            console.error('Error en el inicio de sesión:', error);
+            console.error('Error en el inicio de sesión para cliente:', error);
             this.alertaService.error('Error al iniciar sesión, intenta de nuevo más tarde.');
           }
         }
@@ -220,6 +151,39 @@ export class LoginAbogadosComponent implements OnInit {
       console.log('Formulario de inicio de sesión inválido');
     }
   }
-  
+
+  onSubmitLoginAbogado(): void {
+    const loginData = {
+      correo: this.formularioLogin.value.correo,
+      password: this.formularioLogin.value.password,
+    };
+
+    this.http.post<any>('http://localhost:8080/login', loginData).subscribe(
+      (response) => {
+        const nombreUsuario = response.nombre;
+        const abogadoId = response.id;
+        const accessToken = response.token;
+
+        localStorage.setItem('username', nombreUsuario);
+        localStorage.setItem('abogadoId', abogadoId.toString());
+        localStorage.setItem('accessToken', accessToken);
+
+        if (response.rol === 'admin') {
+          this.router.navigate(['/admin-principal']);
+        } else {
+          this.router.navigate(['/InicioPaginaPrincipal']);
+        }
+
+        this.alertaService.success('Login exitoso', true);
+      },
+      (error) => {
+        if (error.status === 401) {
+          this.alertaService.error('Credenciales incorrectas. Por favor, intenta de nuevo.');
+        } else {
+          console.error('Error en el inicio de sesión para abogado:', error);
+          this.alertaService.error('Error al iniciar sesión, intenta de nuevo más tarde.');
+        }
+      }
+    );
+  }
 }
-  

@@ -20,7 +20,7 @@
 
         <div class="boton" *ngIf="loggedIn()">
             <button type="button" class="loggedin" (click)="logout()">
-              {{ getUserRole() === 'admin' ? 'Administrador' : getUserRole() === 'abogado' ? 'Abogado' : 'Invitado' }}: {{ getUsername() }}
+              {{ getUserRole() === 'admin' ? 'Abogado' : getUserRole() === 'abogado' ? 'Abogado' : 'Invitado' }}: {{ getUsername() }}
             </button>
           </div>
           

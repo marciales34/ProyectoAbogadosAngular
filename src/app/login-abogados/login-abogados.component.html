@@ -1,5 +1,5 @@
 <div class="logo">
-  <img class="img1" src="../../assets/img/ValvuenAbogados.jpg" alt="">
+  <img class="img1" src="../../assets/img/logoabogados2.png" alt="">
 </div>
 <div class="container" id="container">
   <div class="form-container sign-up-container">
@@ -21,14 +21,24 @@
             El correo es obligatorio y debe ser un correo electrónico válido.
           </div>
           
-          <input type="password" placeholder="Contraseña" formControlName="password" required />
-          <div *ngIf="formularioRegistro?.get('password')?.invalid && formularioRegistro?.get('password')?.touched" class="error-message">
+          <input type="password" placeholder="Contraseña" formControlName="contrasena" required />
+          <div *ngIf="formularioRegistro?.get('contrasena')?.invalid && formularioRegistro?.get('contrasena')?.touched" class="error-message">
             La contraseña es obligatoria.
           </div>
 
           <input type="text" placeholder="Teléfono" formControlName="telefono" required />
           <div *ngIf="formularioRegistro?.get('telefono')?.invalid && formularioRegistro?.get('telefono')?.touched" class="error-message">
             El teléfono es obligatorio.
+          </div>
+
+          <input type="text" placeholder="Edad" formControlName="edad" required />
+          <div *ngIf="formularioRegistro?.get('edad')?.invalid && formularioRegistro?.get('edad')?.touched" class="error-message">
+            La edad es obligatoria.
+          </div>
+
+          <input type="text" placeholder="Direccion" formControlName="direccion" required />
+          <div *ngIf="formularioRegistro?.get('direccion')?.invalid && formularioRegistro?.get('direccion')?.touched" class="error-message">
+            La ciudad es obligatoria.
           </div>
           
           <button type="submit">Registrarse</button>
@@ -38,29 +48,16 @@
   <div class="form-container sign-in-container">
     <form (ngSubmit)="onSubmitLogin()" [formGroup]="formularioLogin" id="form2">
       <h1>Inicia Sesión</h1>
-      <select formControlName="tipoUsuario">
+      <select formControlName="tipoUsuario" required>
+        <option value="" disabled selected>Selecciona el tipo de usuario</option>
         <option value="cliente">Cliente</option>
         <option value="abogado">Abogado</option>
       </select>
-      <div class="social-container">
-          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <span>O Usa Tu Cuenta</span>
       <input type="email" placeholder="Email" formControlName="correo" required />
-      <div *ngIf="formularioLogin?.get('correo')?.invalid && formularioLogin?.get('correo')?.touched" class="error-message">
-          El correo es obligatorio y debe ser un correo electrónico válido.
-      </div>
-  
       <input type="password" placeholder="Password" formControlName="password" required/>
-      <div *ngIf="formularioLogin?.get('password')?.invalid && formularioLogin?.get('password')?.touched" class="error-message">
-          La contraseña es obligatoria.
-      </div>
-  
-      <a href="#">¿Olvidaste tu contraseña?</a>
-      <button>Iniciar Sesión</button>
-  </form>
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+    
   
   </div>
   <div class="overlay-container">

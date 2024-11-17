@@ -18,6 +18,7 @@ import { AdminListaAComponent} from './admin-lista-a/admin-lista-a.component';
 import { AdminListaClientesComponent} from './admin-lista-c/admin-lista-c.component';
 import { DatosAdminCuentaComponent } from './datos-admin-cuenta/datos-admin-cuenta.component';
 import { ListaCasosAdministradorComponent } from './lista-casos-administrador/lista-casos-administrador.component';
+import { ClientesComponent } from './clientes/clientes.component';
 
 
 export const routes: Routes = [
@@ -42,6 +43,7 @@ export const routes: Routes = [
     { path: "admin-lista-c", component: AdminListaClientesComponent },
     { path: "admin-lista-cuenta", component: DatosAdminCuentaComponent },
     { path: "admin-lista-casosTotales", component: ListaCasosAdministradorComponent },
+    { path: "clientes", component: ClientesComponent },
     
 
 ];
